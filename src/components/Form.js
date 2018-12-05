@@ -5,28 +5,29 @@ class Form extends Component {
     state = {
         draft: ''
     }
+
+    handleSubmit = (e) => {
+        e.preventDefault();
+        const timestamp = new Date();
+        firebase.firestore().collection('tasks').add({
+            task: this.state.draft,
+            isComplete: false,
+            added: timestamp
+        })
+        this.setState({ draft: '' });
+    }
+
+    handleUpdate = (e) => {
+        let draft = '';
+        draft += e.target.value;
+        this.setState({ draft });
+    }
+
     render() {
-        const handleSubmit = (e) => {
-            e.preventDefault();
-            const timestamp = new Date();
-            firebase.firestore().collection('tasks').add({
-                task: this.state.draft,
-                isComplete: false,
-                added: timestamp
-            })
-            this.setState({ draft: '' });
-        }
-
-        const handleUpdate = (e) => {
-            let draft = '';
-            draft += e.target.value;
-            this.setState({ draft });
-        }
-
         return (
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={this.handleSubmit}>
                 <button type="submit"><i className="fas fa-plus"></i></button>
-                <input type="text" id="input-field" value={this.state.draft} onInput={handleUpdate} />
+                <input type="text" id="input-field" value={this.state.draft} onInput={this.handleUpdate} />
             </form>
         );
     }

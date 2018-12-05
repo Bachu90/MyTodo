@@ -21,6 +21,7 @@ class List extends Component {
             this.setState({ tasks });
         });
     }
+
     render() {
         return (
             <ul className="todo-list">
