@@ -102,18 +102,18 @@ body {
   color: #2e3641;
 }
 
-.wrapper .input {
-  background-image: linear-gradient(90deg, #ffffff 63px, #f2e3df 63px, #f2e3df 64px, #ffffff 64px, #ffffff 69px, #f2e3df 69px, #f2e3df 70px, #ffffff 70px);
+.wrapper main form { 
   height: 50px;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
 }
 
-.wrapper .input i {
+.wrapper main form button {
+  border: none;
+  background-color: transparent;
+  width: 63px;
+}
+
+.wrapper main form button i {
   font-size: 1.4rem;
   -ms-flex-preferred-size: 63px;
       flex-basis: 63px;
@@ -124,11 +124,22 @@ body {
   cursor: pointer;
 }
 
-.wrapper .input i:hover {
+.wrapper main form button i:hover {
   color: #2e3641;
 }
 
-.wrapper .input input {
+.wrapper main form input#input-field {
+  background-image: linear-gradient(90deg, #ffffff 0px, #f2e3df 0px, #f2e3df 1px, #ffffff 1px, #ffffff 6px, #f2e3df 6px, #f2e3df 7px, #ffffff 7px);
+  height: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.wrapper main form input#input-field {
   width: 100%;
   display: block;
   height: 100%;
