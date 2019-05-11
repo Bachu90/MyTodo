@@ -9,7 +9,7 @@ const getAllTodos = () => {
         dispatch(actions.requestData());
 
         // fetch data from db
-        db.collection('tasks').get().then(querySnapshot => {
+        db.collection('tasks').orderBy('added').get().then(querySnapshot => {
             // dispatch received data action here
             dispatch(actions.receivedData());
 
@@ -26,9 +26,11 @@ const addTodo = (task, todos) => {
         // dispatch request action here
         dispatch(actions.sendData());
 
+        const time = firebase.firestore.Timestamp.now();
         db.collection('tasks').add({
             task: task,
-            isComplete: false
+            isComplete: false,
+            added: time
         }).then(() => {
             db.collection('tasks').get().then(querySnapshot => {
                 querySnapshot.docs.forEach(doc => {
