@@ -1,0 +1,21 @@
+const DB_REQUEST = 'DB_REQUEST';
+const RECEIVED_DATA = 'RECEIVED_DATA';
+const DB_SEND = 'DB_SEND';
+const DB_DELETE = 'DB_DELETE';
+const DB_UPDATE = 'DB_UPDATE';
+const GET_TODO = 'GET_TODO';
+const ADD_TODO = 'ADD_TODO';
+const UPDATE_TODO = 'UPDATE_TODO';
+const DELETE_TODO = 'DELETE_TODO';
+
+export default {
+    DB_REQUEST,
+    RECEIVED_DATA,
+    DB_SEND,
+    DB_DELETE,
+    DB_UPDATE,
+    GET_TODO,
+    ADD_TODO,
+    UPDATE_TODO,
+    DELETE_TODO
+}

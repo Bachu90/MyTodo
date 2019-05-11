@@ -4,18 +4,19 @@ import Header from './components/Header';
 import List from './components/List';
 import Form from './components/Form';
 
+
 class App extends Component {
-  
+
   render() {
     return (
       <div className="wrapper">
         <Header title="Todo List" />
         <main>
-            <List />
-            <Form />
+          <List />
+          <Form />
         </main>
-        
-    </div>
+
+      </div>
     );
   }
 }

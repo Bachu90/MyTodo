@@ -1,36 +1,45 @@
-import React, { Component } from 'react';
-import firebase from '../config/dbconfig';
+import React from 'react';
+import { connect } from 'react-redux';
+import operations from '../redux/operations';
 
-class ListItem extends Component {
-    state = {
-        id: this.props.taskId,
-        task: this.props.task,
-        isComplete: this.props.isComplete
+const ListItem = props => {
+
+    const handleUpdate = (e) => {
+        props.updateTodo(props.taskId, props.task, props.isComplete);
+        console.log(props);
     }
 
-    handleClick = (e) => {
-        let status = this.state.isComplete;
-        this.setState({ isComplete: !status })
-        firebase.firestore().collection('tasks').doc(this.state.id).update({
-            isComplete: !status
-        });
+    const handleDelete = () => {
+        props.deleteTodo(props.taskId);
     }
+    return (
+        <li className="todo-item">
+            {
+                props.updating === props.taskId ?
+                    <i className="fas fa-spinner loader-spinner checkbox"></i> :
+                    <input type="checkbox" checked={props.isComplete ? "checked" : ""} onChange={handleUpdate} />
+            }
 
-    handleDelete = () => {
-        firebase.firestore().collection('tasks').doc(this.state.id).delete().catch(function (err) {
-            console.log("Error removing document: ", err);
-        });
-    }
+            <p>{props.task}</p>
+            {
+                props.deleting === props.taskId ?
+                    <i className="fas fa-spinner loader-spinner"></i> :
+                    <i className="far fa-trash-alt" onClick={handleDelete}></i>
+            }
+        </li>
+    );
 
-    render() {
-        return (
-            <li className="todo-item">
-                <input type="checkbox" checked={this.state.isComplete ? "checked" : ""} onChange={this.handleClick} />
-                <p>{this.state.task}</p>
-                <i className="far fa-trash-alt" onClick={this.handleDelete}></i>
-            </li>
-        );
-    }
 }
 
-export default ListItem;
+const mapStateToProps = state => ({
+    deleting: state.deleting,
+    updating: state.updating
+})
+
+const mapDispatchToProps = dispatch => ({
+    deleteTodo: (id) => dispatch(operations.deleteTodo(id)),
+    updateTodo: (id, task, isComplete) => dispatch(operations.updateTodo(id, task, isComplete))
+})
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(ListItem);

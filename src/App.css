@@ -54,10 +54,10 @@ body {
   background-image: linear-gradient(90deg, #ffffff 63px, #f2e3df 63px, #f2e3df 64px, #ffffff 64px, #ffffff 69px, #f2e3df 69px, #f2e3df 70px, #ffffff 70px);
 }
 
-.wrapper main ul.todo-list li.todo-item input {
+.wrapper main ul.todo-list li.todo-item input, .wrapper main ul.todo-list li.todo-item i.checkbox {
   display: block;
   -ms-flex-preferred-size: 15px;
-      flex-basis: 15px;
+  flex-basis: 15px;
   min-width: 15px;
   min-height: 15px;
   margin: 0 24px;
@@ -128,6 +128,12 @@ body {
   color: #2e3641;
 }
 
+i.loader-spinner {
+  color: #2e3641 !important;
+  animation: rotate 1s infinite;
+  transform-origin: 50%, 50%;
+}
+
 .wrapper main form input#input-field {
   background-image: linear-gradient(90deg, #ffffff 0px, #f2e3df 0px, #f2e3df 1px, #ffffff 1px, #ffffff 6px, #f2e3df 6px, #f2e3df 7px, #ffffff 7px);
   height: 50px;
@@ -153,5 +159,15 @@ body {
   .wrapper {
     width: 100%;
     margin: 0;
+  }
+}
+
+@keyframes rotate {
+  0% {
+      transform:  rotate(0deg);
+  }
+
+  100% {
+      transform:  rotate(360deg);
   }
 }

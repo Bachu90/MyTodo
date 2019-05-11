@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import firebase from '../config/dbconfig';
+import { connect } from 'react-redux';
+import operations from '../redux/operations';
 
 class Form extends Component {
     state = {
@@ -8,12 +9,7 @@ class Form extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        const timestamp = new Date();
-        firebase.firestore().collection('tasks').add({
-            task: this.state.draft,
-            isComplete: false,
-            added: timestamp
-        })
+        this.props.addTodo(this.state.draft, this.props.todos);
         this.setState({ draft: '' });
     }
 
@@ -26,11 +22,22 @@ class Form extends Component {
     render() {
         return (
             <form onSubmit={this.handleSubmit}>
-                <button type="submit"><i className="fas fa-plus"></i></button>
-                <input type="text" id="input-field" value={this.state.draft} onInput={this.handleUpdate} />
+                <button type="submit"><i className={this.props.sending ? "fas fa-spinner loader-spinner" : "fas fa-plus"}></i></button>
+                <input type="text" id="input-field" value={this.state.draft} onChange={this.handleUpdate} />
             </form>
         );
     }
 }
 
-export default Form;
+const mapStateToProps = state => ({
+    sending: state.sending,
+    todos: state.todos
+})
+
+const mapDispatchToProps = (dispatch) => ({
+    addTodo: (task, todos) => {
+        dispatch(operations.addTodo(task, todos));
+    }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Form);
