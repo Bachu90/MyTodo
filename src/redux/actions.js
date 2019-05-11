@@ -10,9 +10,9 @@ const updateData = (id) => ({ type: types.DB_UPDATE, id });
 
 const deleteData = (id) => ({ type: types.DB_DELETE, id });
 
-const addTodo = (id, task, isComplete) => ({ type: types.ADD_TODO, id, task, isComplete });
+const addTodo = (id, task, isComplete, added) => ({ type: types.ADD_TODO, id, task, isComplete, added });
 
-const updateTodo = (id, task, isComplete) => ({ type: types.UPDATE_TODO, id, task, isComplete });
+const updateTodo = (id, task, isComplete, added) => ({ type: types.UPDATE_TODO, id, task, isComplete, added });
 
 const deleteTodo = (id) => ({ type: types.DELETE_TODO, id });
 

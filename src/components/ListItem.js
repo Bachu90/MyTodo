@@ -5,8 +5,7 @@ import operations from '../redux/operations';
 const ListItem = props => {
 
     const handleUpdate = (e) => {
-        props.updateTodo(props.taskId, props.task, props.isComplete);
-        console.log(props);
+        props.updateTodo(props.taskId, props.task, props.isComplete, props.added);
     }
 
     const handleDelete = () => {
@@ -38,7 +37,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     deleteTodo: (id) => dispatch(operations.deleteTodo(id)),
-    updateTodo: (id, task, isComplete) => dispatch(operations.updateTodo(id, task, isComplete))
+    updateTodo: (id, task, isComplete, added) => dispatch(operations.updateTodo(id, task, isComplete, added))
 })
 
 

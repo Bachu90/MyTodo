@@ -49,7 +49,7 @@ const rootReducer = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 sending: false,
-                todos: [...state.todos, { id: action.id, task: action.task, isComplete: action.isComplete }]
+                todos: [...state.todos, { id: action.id, task: action.task, isComplete: action.isComplete, added: action.added }]
             };
         case types.UPDATE_TODO:
             return {
@@ -60,7 +60,8 @@ const rootReducer = (state = INITIAL_STATE, action) => {
                         return ({
                             id: action.id,
                             task: action.task,
-                            isComplete: action.isComplete
+                            isComplete: action.isComplete,
+                            added: action.added
                         })
                     } else {
                         return todo;

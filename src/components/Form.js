@@ -23,7 +23,7 @@ class Form extends Component {
         return (
             <form onSubmit={this.handleSubmit}>
                 <button type="submit"><i className={this.props.sending ? "fas fa-spinner loader-spinner" : "fas fa-plus"}></i></button>
-                <input type="text" id="input-field" value={this.state.draft} onChange={this.handleUpdate} />
+                <input type="text" id="input-field" value={this.state.draft} onChange={this.handleUpdate} required />
             </form>
         );
     }

@@ -15,7 +15,7 @@ const getAllTodos = () => {
 
             querySnapshot.docs.forEach(doc => {
                 // dispatch getTodo action here
-                dispatch(actions.addTodo(doc.id, doc.data().task, doc.data().isComplete));
+                dispatch(actions.addTodo(doc.id, doc.data().task, doc.data().isComplete, doc.data().added));
             })
         });
     }
@@ -36,7 +36,7 @@ const addTodo = (task, todos) => {
                 querySnapshot.docs.forEach(doc => {
                     if (!todos.find(todo => todo.id === doc.id)) {
                         // dispatch getTodo action here
-                        dispatch(actions.addTodo(doc.id, doc.data().task, doc.data().isComplete));
+                        dispatch(actions.addTodo(doc.id, doc.data().task, doc.data().isComplete, time));
                     }
                 })
             });
@@ -44,18 +44,19 @@ const addTodo = (task, todos) => {
     }
 }
 
-const updateTodo = (id, task, isComplete) => {
+const updateTodo = (id, task, isComplete, added) => {
     return function (dispatch) {
         dispatch(actions.updateData(id));
         db.collection('tasks').doc(id).set({
             task,
-            isComplete: !isComplete
+            isComplete: !isComplete,
+            added
         }).then(() => {
             db.collection('tasks').get().then(querySnapshot => {
                 querySnapshot.docs.forEach(doc => {
                     if (doc.id === id) {
                         // dispatch getTodo action here
-                        dispatch(actions.updateTodo(doc.id, doc.data().task, doc.data().isComplete));
+                        dispatch(actions.updateTodo(doc.id, doc.data().task, doc.data().isComplete, doc.data().added));
                     }
                 })
             });
