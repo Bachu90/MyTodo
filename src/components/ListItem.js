@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import operations from '../redux/operations';
+import middleware from '../redux/middleware';
 
 const ListItem = props => {
 
@@ -36,8 +36,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-    deleteTodo: (id) => dispatch(operations.deleteTodo(id)),
-    updateTodo: (id, task, isComplete, added) => dispatch(operations.updateTodo(id, task, isComplete, added))
+    deleteTodo: (id) => dispatch(middleware.deleteTodo(id)),
+    updateTodo: (id, task, isComplete, added) => dispatch(middleware.updateTodo(id, task, isComplete, added))
 })
 
 

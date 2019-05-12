@@ -108,10 +108,19 @@ body {
   display: flex;
 }
 
+.wrapper main form input#input-field:focus {
+  outline: none;
+}
+
 .wrapper main form button {
   border: none;
   background-color: transparent;
   width: 63px;
+  outline: none;
+}
+
+.wrapper main form button:focus {
+  outline: none;
 }
 
 .wrapper main form button i {
